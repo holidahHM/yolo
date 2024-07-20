@@ -2,7 +2,7 @@ services:
   client:
     build: ./client
     ports:
-      - "3000:3000"
+      - "3050:3050"
     depends_on:
       - backend
 
@@ -13,12 +13,12 @@ services:
     depends_on:
       - mongo
     environment:
-      MONGO_URL: mongodb://mongo:27017/mydatabase
+      MONGO_URL: 'mongodb+srv://holliemwangi:H0llies@m@tmcluster.zbhbjtc.mongodb.ne/'
 
   mongo:
     image: mongo:4.4
     ports:
-      - "27017:27017"
+      - "3000:3000"
     volumes:
       - mongo-data:/data/db
 
