@@ -25,7 +25,7 @@ Install the docker engine here:
 
 - Clone this repository to your local machine
 
-  `git clone https://github.com/brianbwire5/yolo.git`
+  `git clone https://github.com/holidahHM/yolo`
 
 - Navigate to the root directory of your cloned repository
 
@@ -46,9 +46,6 @@ Install the docker engine here:
 
 ## The Docker images used in this application are sourced from this repository
 
-https://hub.docker.com/repositories/brianbwire
-
-![Alt text](image.png)
 
 ## How to run the app
 Use vagrant up --provison command
