@@ -1,0 +1,8 @@
+node node_modules
+roles
+.vscode
+.vagrant
+.dockerignore
+.gitignore
+Dockerfile
+
