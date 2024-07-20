@@ -1,8 +1,12 @@
-node node_modules
+node_modules
 roles
 .vscode
 .vagrant
 .dockerignore
 .gitignore
 Dockerfile
+hosts
+Structure
+Vagrantfile
+image.png
 
