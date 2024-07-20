@@ -14,11 +14,11 @@ RUN npm install
 COPY . .
 
 #Add multi-stage build
-FROM alpine:3.16.7
+FROM alpine:v3.18
 
 WORKDIR /app
 
-RUN apk update && apk add --update nodejs
+RUN apk update && apk add --update nodejs npm
 
 COPY --from=build /usr/src/app /app
 

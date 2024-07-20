@@ -7,12 +7,18 @@ const upload = multer();
 const productRoute = require('./routes/api/productRoute');
 
 // Connecting to the Database
-let mongodb_url = 'mongodb+srv://holliemwangi:H0llies@m@tmcluster.zbhbjtc.mongodb.ne/';
-let dbName = 'myyolodb';
+let mongodb_url = 'mongodb+srv://holliemwangi:H0llies@m@tmcluster.zbhbjtc.mongodb.net/myyolodb?retryWrites=true&w=majority&appName=TMCluster';
+// let dbName = 'myyolodb';
 //PORT=3000
+// mongodb+srv://holliemwangi:H0llies@m@tmcluster.zbhbjtc.mongodb.net/?retryWrites=true&w=majority&appName=TMCluster
 
 // define a url to connect to the database
-const MONGODB_URI = process.env.MONGODB_URI || mongodb_url + dbName
+// const MONGODB_URI = process.env.MONGODB_URI || mongodb_url + dbName
+// mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true  } )
+// let db = mongoose.connection;
+
+//new db connection
+const MONGODB_URI = process.env.MONGODB_URI || mongodb_url
 mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true  } )
 let db = mongoose.connection;
 
