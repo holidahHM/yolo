@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 #Add multi-stage build
-FROM alpine:v3.18
+FROM alpine:latest
 
 WORKDIR /app
 
