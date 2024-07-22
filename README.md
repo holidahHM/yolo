@@ -5,6 +5,8 @@ This project involved the containerization and deployment of a full-stack yolo a
 # Requirements
 Install the docker engine here:
 - [Docker](https://docs.docker.com/engine/install/) 
+- Docker Compose (if applicable)
+- Other tools or dependencies
 
 ## How to launch the application 
 ### Method 1 (faster)
@@ -55,7 +57,7 @@ Install the docker engine here:
 ## How to terminate the application completely
  `docker compose down`
 
-## The Docker images used in this application are sourced from this repository
+ ## The Docker images used in this application are sourced from this repository
 
 https://hub.docker.com/repositories/holidahmwangi23
 
@@ -64,3 +66,14 @@ https://hub.docker.com/repositories/holidahmwangi23
 
 ## How to run the app
 Use vagrant up --provison command
+
+ ### Creating the Network
+
+To create the network, use the following command:
+
+```bash
+docker 'network create yolo_default'
+
+
+
+

@@ -1,16 +1,74 @@
+# services:
+#   client:
+#   image: 
+#     build: ./client
+#     dockerfie : Dockerfile
+
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - backend
+#     networks : yolo_default
+#     volumes:
+#       - datavol:/path/in/affectionate_taussig
+
+#   backend:
+#     build: ./backend
+#     ports:
+#       - "5000:5000"
+#     depends_on:
+#       - mongo
+#     environment:
+#       MONGO_URL: 'mongodb+srv://holliemwangi:H0llies@m@tmcluster.zbhbjtc.mongodb.ne/'
+#     networks:
+#       - yolo_default
+#     volumes:
+#       - datavol:/path/in/elegant_dijkstra
+
+#   mongo:
+#     image: mongo:4.4
+#     ports:
+#       - "27017:27017"
+#     networks:
+#       - yolo_default
+#     volumes:
+#       - datavol:/path/in/mongodb-container
+   
+   
+# volumes:
+#   mongo_data: datavol
+#   backend_data: datavol
+#   client_date: datavol
+#   driver: local
+
+# networks:
+#   yolo_default:
+#     external: true
+
+
+version: '3.8'
+
 services:
   client:
-    build: ./client
-    dockerfie : Dockerfile
-
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: yolo-client:V1.0.3 # Optional: Define an image name if needed
     ports:
       - "3000:3000"
     depends_on:
       - backend
-    networks : yolo_default
+    networks:
+      - yolo_default
+    volumes:
+      - datavol:/path/in/affectionate_taussig
+    command: ["npm", "start"]
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: yolo-backend:V1.0.1 # Optional: Define an image name if needed
     ports:
       - "5000:5000"
     depends_on:
@@ -19,6 +77,9 @@ services:
       MONGO_URL: 'mongodb+srv://holliemwangi:H0llies@m@tmcluster.zbhbjtc.mongodb.ne/'
     networks:
       - yolo_default
+    volumes:
+      - datavol:/path/in/elegant_dijkstra
+    command: ["node", "server"]
 
   mongo:
     image: mongo:4.4
@@ -26,15 +87,13 @@ services:
       - "27017:27017"
     networks:
       - yolo_default
-   
-   
+    volumes:
+      - mongo_data:/data/db # Using a dedicated volume for MongoDB data
+
 volumes:
-  mongo_data: datavol
-  backend_data: datavol
-  driver: local
+  datavol: # This volume is shared among services
+  mongo_data: # Dedicated volume for MongoDB data
 
 networks:
-   yolo_default:
-   driver: bridge
-
-
+  yolo_default:
+    external: true
