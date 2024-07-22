@@ -34,9 +34,20 @@ Install the docker engine here:
 - Launch the application using the docker compose command
 
   `docker compose up`
+-Run the front end:
+   `npm start`
+
+- Install dependancies on npm
+`export NODE_OPTIONS=--openssl-legacy-provider`
+
+- Run the backend
+`node server`
+
 
 ## Access the application on your browser using the following URL
  `http://localhost:3000/`
+
+
 
 ## How to stop the application
 - Navigate back to your terminal and press "ctrl+c" 
