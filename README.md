@@ -8,15 +8,23 @@ Install the docker engine here:
 - Docker Compose (if applicable)
 - Other tools or dependencies
 
+
+ ### Creating the Network
+
+To create the network, use the following command:
+
+```bash
+docker 'network create yolo_default'
+
 ## How to launch the application 
 ### Method 1 (faster)
 - NOTE: This method does not require cloning of this repository
 
 - Navigate to the launch_app folder and copy the contents of the [docker-compose.yaml] in the root of the project
 - On your local machine, navigate to your desired directory and create
-  a docker-compose.yaml file, paste the contents into it and save
+  a docker-compose.yml file, paste the contents into it and save
 
-  `touch docker-compose.yaml`
+  `touch docker-compose.yml`
 
 - Launch the application using docker compose up
 
@@ -54,8 +62,6 @@ Install the docker engine here:
 ## How to stop the application
 - Navigate back to your terminal and press "ctrl+c" 
 
-## How to terminate the application completely
- `docker compose down`
 
  ## The Docker images used in this application are sourced from this repository
 
@@ -64,15 +70,9 @@ https://hub.docker.com/repositories/holidahmwangi23
 ![Description of image](image.png)
 
 
-## How to run the app
-Use vagrant up --provison command
 
- ### Creating the Network
-
-To create the network, use the following command:
-
-```bash
-docker 'network create yolo_default'
+## How to terminate the application completely
+ `docker compose down`
 
 
 
