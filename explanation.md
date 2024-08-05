@@ -188,5 +188,21 @@ Your setup uses an Ansible inventory file to define the connection details for m
 
 The playbook will run on all hosts specified in the inventory, applying roles to deploy the frontend and backend components and set up MongoDB.
 
+Install Dependencies: Each role installs necessary dependencies, such as git, docker.io, and docker-compose.
+
+Clone Repositories: The frontend-deployment and backend-deployment roles clone their respective repositories from GitHub.
+
+Run Services: Both roles use docker-compose to build and run Docker containers for the frontend and backend services.
+
+Setup MongoDB: The setup-mongodb role installs and starts MongoDB.
+Make sure to replace https://github.com/yourusername/yolo-frontend.git and https://github.com/yourusername/yolo-backend.git with the actual URLs of your repositories.
+
+To run the playbook:
+
+sh
+ansible-playbook playbook.yml
+
+This setup should provision your Vagrant VMs, clone the necessary repositories, and run the YOLO e-commerce application so it can be verified in the browser.
+
 If you need to adjust or troubleshoot this setup, ensure that the inventory file correctly reflects the hosts' details and that the playbook roles are correctly implemented.
 

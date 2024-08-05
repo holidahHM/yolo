@@ -119,6 +119,11 @@ backend-deployment: Deploys the backend of the YOLO e-commerce app.
 ansible.cfg
 Ensure that the ansible.cfg file is correctly set up to point to the inventory file and include necessary configurations:
 
+##To run the playbook:
+sh
+`ansible-playbook playbook.yml`
+
+
 
 ##File Paths
 Ensure all file paths in the inventory and ansible.cfg are accurate and accessible from your machine.
