@@ -1,0 +1,17 @@
+---
+- name: Pull image from repository
+  docker_image:
+    name: holidahmwangi23/yoloproject:V1.0.3
+    source: pull
+
+- name: Create Node.js Backend Container
+  docker_container:
+    name: affectionate_taussig
+    image: yolo-client:V1.0.3
+    networks:
+      - yolo_default
+      - name: app-net
+    ports:
+      - "5000:5000"
+    command: "npm start"
+  become: yes
