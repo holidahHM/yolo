@@ -1,4 +1,11 @@
 ---
+
+- name: Clone frontend repository
+  git:
+    repo: 'https://github.com/yourusername/yolo-frontend.git'
+    dest: /home/holidah/Downloads/DevopsClass/Dev06/yolo/client
+
+
 - name: Pull image from repository
   docker_image:
     name: holidahmwangi23/yoloproject:V1.0.3
