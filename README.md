@@ -74,4 +74,64 @@ https://hub.docker.com/repositories/holidahmwangi23
 ## How to terminate the application completely
  `docker compose down`
 
- 
+ # YOLO E-commerce App Ansible Deployment
+
+## Overview
+
+This repository contains an Ansible setup for deploying and managing the YOLO e-commerce app. The setup includes an inventory file defining the target hosts and an Ansible playbook that orchestrates the deployment process.
+
+## Inventory File
+
+The inventory file is located at `~/yolo/inventory.yml` and defines the hosts for deployment:
+
+```yaml
+all:
+  hosts:
+    client:
+      ansible_host: 127.0.0.1
+      ansible_port: 2222
+      ansible_user: vagrant
+      ansible_private_key_file: /home/holidah/Downloads/DevopsClass/Dev06/yolo/.vagrant/machines/client/virtualbox/private_key
+    backend:
+      ansible_host: 127.0.0.1
+      ansible_port: 2201
+      ansible_user: vagrant
+      ansible_private_key_file: /home/holidah/Downloads/DevopsClass/Dev06/yolo/.vagrant/machines/backend/virtualbox/private_key
+    mongo:
+      ansible_host: 127.0.0.1
+      ansible_port: 2202
+      ansible_user: vagrant
+      ansible_private_key_file: /home/holidah/Downloads/DevopsClass/Dev06/yolo/.vagrant/machines/mongo/virtualbox/private_key
+
+##Hosts
+client: The frontend server.
+backend: The backend server.
+mongo: The MongoDB server
+
+##Playbook
+The Ansible playbook is located in playbook.yml. It is designed to dockerize and run the YOLO e-commerce app. The playbook performs the following tasks on roles:
+
+frontend-deployment: Deploys the frontend of the YOLO e-commerce app.
+setup-mongodb: Configures MongoDB.
+backend-deployment: Deploys the backend of the YOLO e-commerce app.
+
+##Configuration
+ansible.cfg
+Ensure that the ansible.cfg file is correctly set up to point to the inventory file and include necessary configurations:
+
+
+##File Paths
+Ensure all file paths in the inventory and ansible.cfg are accurate and accessible from your machine.
+
+##Usage
+To run the Ansible playbook:
+
+Ensure that the Vagrant VMs are up and running.
+
+Verify that the inventory file and playbook are correctly configured.
+
+Execute the playbook with the following command:  "ansible-playbook -i /home/holidah/yolo/inventory.yml playbook.yml"
+
+##Troubleshooting
+Error: Unable to parse inventory file: Verify the inventory file path and format.
+Error: Connection refused: Ensure that the VMs are up and accessible.
