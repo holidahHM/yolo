@@ -1,7 +1,17 @@
 all:
   hosts:
-    myserver:
+    client:
       ansible_host: 127.0.0.1
       ansible_port: 2222
       ansible_user: vagrant
-      ansible_private_key_file: .vagrant/machines/default/virtualbox/private_key
+      ansible_private_key_file: /home/holidah/Downloads/DevopsClass/Dev06/yolo/.vagrant/machines/client/virtualbox/private_key
+    backend:
+      ansible_host: 127.0.0.1
+      ansible_port: 2201
+      ansible_user: vagrant
+      ansible_private_key_file: /home/holidah/Downloads/DevopsClass/Dev06/yolo/.vagrant/machines/backend/virtualbox/private_key
+    mongo:
+      ansible_host: 127.0.0.1
+      ansible_port: 2202
+      ansible_user: vagrant
+      ansible_private_key_file: /home/holidah/Downloads/DevopsClass/Dev06/yolo/.vagrant/machines/mongo/virtualbox/private_key
