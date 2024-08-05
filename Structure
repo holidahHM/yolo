@@ -4,15 +4,15 @@ ansible-playbook/
 │   │   ├── tasks/
 │   │   │   └── main.yml
 │   │   └── vars/
-│   │       └── main.yml
+│   │       └── vars.yml
 │   ├── backend-deployment/
 │   │   ├── tasks/
 │   │   │   └── main.yml
 │   │   └── vars/
-│   │       └── main.yml
+│   │       └── vars.yml
 │   └── frontend-deployment/
 │       ├── tasks/
 │       │   └── main.yml
 │       └── vars/
-│           └── main.yml
+│           └── vars.yml
 └── playbook.yml

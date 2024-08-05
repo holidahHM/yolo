@@ -10,7 +10,7 @@
     image: yolo-backend:V1.0.1
     networks:
       - yolo_default
-      - name: app-net
+      - name: yolo_app
     ports:
       - "5000:5000"
     command: "npm start"
