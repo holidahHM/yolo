@@ -3,7 +3,7 @@
  Used 
  1. Client:`node:16-alpine3.16`
  2. Backend: `node:16-alpine3.16`
- 3.Mongo : `mongo:6.0 `
+ 3.Mongo : `mongo:5.0 `
        
 
 ## 2. Dockerfile directives used in the creation and running of each container.
@@ -104,67 +104,89 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - yolo-network
+      - yolo_default
 
   client:
     # ...
     ports:
       - "3000:3000"
     networks:
-      - yolo-network
+      - yolo_default
   
   mongodb:
     # ...
     ports:
       - "27017:27017"
     networks:
-      - yolo-network
+      - yolo_default
 
 networks:
-  yolo-network:
+  yolo_default:
     driver: bridge
 ```
 In this configuration, the backend container is mapped to port 5000 of the host, the client container is mapped to port 3000 of the host, and mongodb container is mapped to port 27017 of the host. All containers are connected to the yolo-network bridge network.
 
 
-## 4.  Docker Compose Volume Definition and Usage
-The Docker Compose file includes volume definitions for MongoDB data storage. The relevant section is as follows:
+## 4.  Explanation of How Inventory and Playbook Work Together
+Hosts Definition:
 
-yaml
+The inventory file lists the hosts that Ansible will manage. In this case, there are three hosts (client, backend, and mongo), each with specific SSH connection details and private key files.
 
-```
-volumes:
-  mongodata:  # Define Docker volume for MongoDB data
-    driver: local
+Playbook Configuration:
+The playbook is configured to run on all hosts defined in the inventory file:
 
-```
-This volume, mongodb_data, is designated for storing MongoDB data. It ensures that the data remains intact and is not lost even if the container is stopped or deleted.
+hosts: all: This directive specifies that the playbook should run on all hosts listed in the inventory file.
+become: true: This setting ensures that the tasks in the playbook will be executed with elevated privileges (e.g., using sudo).
 
-## 5. Git Workflow to achieve the task
+
+
+Playbook Configuration:
+The playbook uses three roles:
+
+frontend-deployment: This role is responsible for deploying the frontend of the YOLO e-commerce app.
+
+setup-mongodb: This role sets up MongoDB, which is likely used as the database for the application.
+
+backend-deployment: This role is responsible for deploying the backend of the YOLO e-commerce app.
+
+## 5. Roles
+
+Initialization: Ansible reads the inventory.yml file to get the list of hosts and their connection details.
+
+Playbook Execution:
+
+Connects to each host using the provided SSH details (ansible_host, ansible_port, ansible_user, ansible_private_key_file).
+
+Executes the tasks defined in the roles frontend-deployment, setup-mongodb, and backend-deployment on all hosts.
+
+Privilege Escalation: The become: true directive ensures that tasks requiring elevated privileges are executed as sudo.
+
 
 To achieve the task the following git workflow was used:
 
 1. Fork the repository from the original repository.
-2. Clone the repo: `git@github.com:Maubinyaachi/yolo-Microservice.git`
+2. Clone the repo: `https://github.com/holidahHM/yolo.git`
 3. Create a .gitignore file to exclude unnecessary     files and directories from version control.
-4. Added Dockerfile for the client to the repo:
-`git add client/Dockerfile`
-5. Add Dockerfile for the backend to the repo:
-`git add backend/dockerfile`
-6. Committed the changes:
-`git commit -m "Added Dockerfiles"`
-7. Added docker-compose file to the repo:
+4. Committed the changes:
+`git commit -m "Installed vagrant"`
+5. Updated Vagrant file:
 `git add docker-compose.yml`
-8. Committed the changes:
-`git commit -m "Added docker-compose file"`
-9. Pushed the files to github:
+6. Committed the changes:
+`git commit -m "downgraded docker compose yml"`
+7. Committed the changes:
+`git commit -m "update the main.yml file for both frontend and backend"`
+8. Updated role folder:
+`Updated roles main.yml files`
+9. Committed the changes:
+`git commit -m "updated the hosts on inventory.yml"`
+10. Pushed the files to github:
 `git push `
-10. Built the client and backend images:
-`docker compose build`
-11. Pushed the built imags to docker registry:
-`docker compose push`
-12. Deployed the containers using docker compose:
-`docker compose up`
 
-13. Created explanation.md file and modified it as the commit messages in the repo will explain.
+
+## 6. Summary
+Your setup uses an Ansible inventory file to define the connection details for multiple hosts and a playbook to deploy and configure a YOLO e-commerce app. 
+
+The playbook will run on all hosts specified in the inventory, applying roles to deploy the frontend and backend components and set up MongoDB.
+
+If you need to adjust or troubleshoot this setup, ensure that the inventory file correctly reflects the hosts' details and that the playbook roles are correctly implemented.
 

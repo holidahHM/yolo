@@ -74,6 +74,4 @@ https://hub.docker.com/repositories/holidahmwangi23
 ## How to terminate the application completely
  `docker compose down`
 
-
-
-
+ 
