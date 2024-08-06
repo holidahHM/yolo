@@ -121,7 +121,9 @@ Ensure that the ansible.cfg file is correctly set up to point to the inventory f
 
 ##To run the playbook:
 sh
-`ansible-playbook playbook.yml`
+`ansible-playbook playbook.yml --ask-vault-pass`
+
+The vault pass is "H0llie?!"
 
 
 

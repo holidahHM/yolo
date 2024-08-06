@@ -21,10 +21,17 @@
     state: present
     update_cache: yes
 
+- name: Log in to Docker Hub
+  docker_login:
+    username: "holidahmwangi23"
+    password: "+e!3tyqN4&EcH4T"
+
 - name: Pull MongoDB image from Docker Hub
   docker_image:
     name: mongo:latest
     source: pull
+
+
 
 - name: Create Docker network
   docker_network:

@@ -27,6 +27,11 @@
     state: present
     update_cache: yes
 
+- name: Log in to Docker Hub
+  docker_login:
+    username: "holidahmwangi23"
+    password: "+e!3tyqN4&EcH4T"
+
 - name: Pull backend image from Docker Hub
   docker_image:
     name: holidahmwangi23/yoloprojectbackend:V1.0.1
