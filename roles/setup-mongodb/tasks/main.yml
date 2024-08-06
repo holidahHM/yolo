@@ -26,9 +26,10 @@
     username: "holidahmwangi23"
     password: "+e!3tyqN4&EcH4T"
 
+
 - name: Pull MongoDB image from Docker Hub
   docker_image:
-    name: mongo:latest
+    name: holidahmwangi23/yoloprojectmongo:latest
     source: pull
 
 
@@ -40,7 +41,7 @@
 - name: Create MongoDB Container
   docker_container:
     name: yolo_mongo
-    image: mongo:latest
+    image: holidahmwangi23/yoloprojectmongo:latest
     networks:
       - name: yolo_default
     ports:
