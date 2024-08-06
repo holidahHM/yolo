@@ -31,14 +31,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-service
+  name: frontend-service
 spec:
   type: LoadBalancer
   selector:
     app: frontend
   ports:
     - protocol: TCP
-      port: 5000
-      targetPort: 5000
-      nodePort: 30100
+      port: 3000
+      targetPort: 3000
+      nodePort: 30101
   

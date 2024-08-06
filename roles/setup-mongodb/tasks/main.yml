@@ -1,14 +1,41 @@
+# ---
+# - name: Run MongoDB Container
+#   docker_container:
+#     name: app-mongo
+#     image: mongo
+#     ports:
+#       - '27017:27017'
+#     volumes:
+#       - ./app-mongo-data:/data/db
+#     networks:
+#       - name: app-net
+#   tags:
+#     - database
+#     - backend
+
+
 ---
-- name: Run MongoDB Container
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+    update_cache: yes
+
+- name: Pull MongoDB image from Docker Hub
+  docker_image:
+    name: mongo:latest
+    source: pull
+
+- name: Create Docker network
+  docker_network:
+    name: yolo_default
+
+- name: Create MongoDB Container
   docker_container:
-    name: app-mongo
-    image: mongo
-    ports:
-      - '27017:27017'
-    volumes:
-      - ./app-mongo-data:/data/db
+    name: yolo_mongo
+    image: mongo:latest
     networks:
-      - name: app-net
-  tags:
-    - database
-    - backend
+      - name: yolo_default
+    ports:
+      - "27017:27017"
+  become: yes

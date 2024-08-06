@@ -1,23 +1,43 @@
+# ---
+# - name: Pull image from repository
+#   docker_image:
+#     name: holidahmwangi23/yoloproject:V1.0.3
+#     source: pull
+
+# - name: Create Node.js Frontend Container
+#   docker_container:
+#     name: vibrant_curie
+#     image: yolo-client:V1.0.3
+#     networks:
+#       - yolo_default
+#       - name: yolo_app
+#     ports:
+#       - "3000:3000"
+#     command: "npm start"
+#   become: yes
+
 ---
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+    update_cache: yes
 
-- name: Clone frontend repository
-  git:
-    repo: 'https://github.com/yourusername/yolo-frontend.git'
-    dest: /home/holidah/Downloads/DevopsClass/Dev06/yolo/client
-
-
-- name: Pull image from repository
+- name: Pull frontend image from Docker Hub
   docker_image:
-    name: holidahmwangi23/yoloproject:V1.0.3
+    name: holidahmwangi23/yoloprojectfrontend:V1.0.1
     source: pull
 
-- name: Create Node.js Frontend Container
+- name: Create Docker network
+  docker_network:
+    name: yolo_default
+
+- name: Create React Frontend Container
   docker_container:
-    name: vibrant_curie
-    image: yolo-client:V1.0.3
+    name: yolo_frontend
+    image: holidahmwangi23/yoloprojectfrontend:V1.0.1
     networks:
-      - yolo_default
-      - name: yolo_app
+      - name: yolo_default
     ports:
       - "3000:3000"
     command: "npm start"

@@ -1,28 +1,47 @@
+# ---
+# - name: Pull image from repository
+#   docker_image:
+#     name: holidahmwangi23/yoloprojectbackend:V1.0.1
+#     source: pull
+
+
+
+# - name: Create Node.js Backend Container
+#   docker_container:
+#     name: elegant_dijkstra
+#     image: yolo-backend:V1.0.1
+#     networks:
+#       - yolo_default
+#       - name: yolo_app
+#     ports:
+#       - "5000:5000"
+#     command: "npm start"
+#   become: yes
+
+  
+
 ---
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+    update_cache: yes
 
-
-- name: Clone frontend repository
-  git:
-    repo: 'https://github.com/holidahHM/yolo/tree/main/backend'
-    dest: /home/holidah/Downloads/DevopsClass/Dev06/yolo/backend
-
-
-
-
-- name: Pull image from repository
+- name: Pull backend image from Docker Hub
   docker_image:
     name: holidahmwangi23/yoloprojectbackend:V1.0.1
     source: pull
 
-
+- name: Create Docker network
+  docker_network:
+    name: yolo_default
 
 - name: Create Node.js Backend Container
   docker_container:
-    name: elegant_dijkstra
-    image: yolo-backend:V1.0.1
+    name: yolo_backend
+    image: holidahmwangi23/yoloprojectbackend:V1.0.1
     networks:
-      - yolo_default
-      - name: yolo_app
+      - name: yolo_default
     ports:
       - "5000:5000"
     command: "npm start"
