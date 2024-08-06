@@ -161,6 +161,12 @@ Executes the tasks defined in the roles frontend-deployment, setup-mongodb, and 
 
 Privilege Escalation: The become: true directive ensures that tasks requiring elevated privileges are executed as sudo.
 
+## 6. To run the playbook:
+sh
+`ansible-playbook playbook.yml --ask-vault-pass`
+
+The vault pass is "H0llie?!"
+
 
 To achieve the task the following git workflow was used:
 
