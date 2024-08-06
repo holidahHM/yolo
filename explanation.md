@@ -163,9 +163,9 @@ Privilege Escalation: The become: true directive ensures that tasks requiring el
 
 ## 6. To run the playbook:
 sh
-`ansible-playbook playbook.yml --ask-vault-pass`
+`ansible-playbook playbook.yml`
 
-The vault pass is "H0llie?!"
+
 
 
 To achieve the task the following git workflow was used:
