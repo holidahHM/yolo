@@ -138,9 +138,13 @@ The playbook is configured to run on all hosts defined in the inventory file:
 hosts: all: This directive specifies that the playbook should run on all hosts listed in the inventory file.
 become: true: This setting ensures that the tasks in the playbook will be executed with elevated privileges (e.g., using sudo).
 
+name: A descriptive name for the playbook, "Dockerize and Run YOLO E-Commerce App."
+
+become: Enables privilege escalation, allowing the playbook to perform tasks that require elevated permissions.
 
 
-Playbook Configuration:
+
+Roles Configuration:
 The playbook uses three roles:
 
 frontend-deployment: This role is responsible for deploying the frontend of the YOLO e-commerce app.
@@ -162,6 +166,8 @@ Executes the tasks defined in the roles frontend-deployment, setup-mongodb, and 
 Privilege Escalation: The become: true directive ensures that tasks requiring elevated privileges are executed as sudo.
 
 ## 6. Explanation of Vars.Yml
+vars_files: Specifies an external file containing variables. Using an external file helps keep the playbook clean and makes managing variables easier. Here, variables are stored in roles/frontend-deployment/vars/vars.yml.
+
 General Variables
 app_name: The name of the application.
 docker_network: The name of the Docker network to be used.
