@@ -161,7 +161,31 @@ Executes the tasks defined in the roles frontend-deployment, setup-mongodb, and 
 
 Privilege Escalation: The become: true directive ensures that tasks requiring elevated privileges are executed as sudo.
 
-## 6. To run the playbook:
+## 6. Explanation of Vars.Yml
+General Variables
+app_name: The name of the application.
+docker_network: The name of the Docker network to be used.
+
+Frontend Variables
+frontend_image: Docker image for the frontend.
+frontend_container_name: Container name for the frontend.
+frontend_port: Internal port used by the frontend application.
+frontend_host_port: Port on the host machine to map to the frontend container.
+
+Backend Variables
+backend_image: Docker image for the backend.
+backend_container_name: Container name for the backend.
+backend_port: Internal port used by the backend application.
+backend_host_port: Port on the host machine to map to the backend container.
+
+MongoDB Variables
+mongodb_image: Docker image for MongoDB.
+mongodb_container_name: Container name for MongoDB.
+mongodb_port: Internal port used by MongoDB.
+mongodb_host_port: Port on the host machine to map to the MongoDB container.
+mongodb_data_dir: Directory for MongoDB data.
+
+## 7. To run the playbook:
 sh
 `ansible-playbook playbook.yml`
 

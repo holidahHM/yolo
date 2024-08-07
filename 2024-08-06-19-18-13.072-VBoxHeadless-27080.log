@@ -1,0 +1,12 @@
+Log created: 2024-08-06T19:18:13.724437000Z
+Process ID:  27080 (0x69c8)
+Parent PID:  24106 (0x5e2a)
+Executable:  /usr/lib/virtualbox/VBoxHeadless
+Arg[0]: /usr/lib/virtualbox/VBoxHeadless
+Arg[1]: --comment
+Arg[2]: yolo_mongo_1722868986912_44401
+Arg[3]: --startvm
+Arg[4]: 23bd5595-9147-4f0c-b2aa-0586b29b0610
+Arg[5]: --vrde
+Arg[6]: config
+AddRef: illegal refcnt=3221225469 state=2
