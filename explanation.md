@@ -344,9 +344,11 @@ These steps should help you get started with Minikube on your preferred operatin
 Update apt package index, then install kubectl:
 
 ``` bash
-sudo apt-get update`
+sudo apt-get update
 sudo apt-get install -y kubectl
 ```
+
+
 
 ### Additional Notes
 
