@@ -15,6 +15,7 @@ To create the network, use the following command:
 
 ```bash
 docker 'network create yolo_default'
+```
 
 ## How to launch the application 
 ### Method 1 (faster)
@@ -84,51 +85,34 @@ This repository contains an Ansible setup for deploying and managing the YOLO e-
 
 The inventory file is located at `~/yolo/inventory.yml` and defines the hosts for deployment:
 
-```yaml
-all:
-  hosts:
-    client:
-      ansible_host: 127.0.0.1
-      ansible_port: 2222
-      ansible_user: vagrant
-      ansible_private_key_file: /home/holidah/Downloads/DevopsClass/Dev06/yolo/.vagrant/machines/client/virtualbox/private_key
-    backend:
-      ansible_host: 127.0.0.1
-      ansible_port: 2201
-      ansible_user: vagrant
-      ansible_private_key_file: /home/holidah/Downloads/DevopsClass/Dev06/yolo/.vagrant/machines/backend/virtualbox/private_key
-    mongo:
-      ansible_host: 127.0.0.1
-      ansible_port: 2202
-      ansible_user: vagrant
-      ansible_private_key_file: /home/holidah/Downloads/DevopsClass/Dev06/yolo/.vagrant/machines/mongo/virtualbox/private_key
 
-##Hosts
+
+## Hosts
 client: The frontend server.
 backend: The backend server.
 mongo: The MongoDB server
 
-##Playbook
+## Playbook
 The Ansible playbook is located in playbook.yml. It is designed to dockerize and run the YOLO e-commerce app. The playbook performs the following tasks on roles:
 
 frontend-deployment: Deploys the frontend of the YOLO e-commerce app.
 setup-mongodb: Configures MongoDB.
 backend-deployment: Deploys the backend of the YOLO e-commerce app.
 
-##Configuration
+## Configuration
 ansible.cfg
 Ensure that the ansible.cfg file is correctly set up to point to the inventory file and include necessary configurations:
 
-##To run the playbook:
+## To run the playbook:
 sh
 `ansible-playbook playbook.yml`
 
 
 
-##File Paths
+## File Paths
 Ensure all file paths in the inventory and ansible.cfg are accurate and accessible from your machine.
 
-##Usage
+## Usage
 To run the Ansible playbook:
 
 Ensure that the Vagrant VMs are up and running.
@@ -137,6 +121,91 @@ Verify that the inventory file and playbook are correctly configured.
 
 Execute the playbook with the following command:  "ansible-playbook -i /home/holidah/yolo/inventory.yml playbook.yml"
 
-##Troubleshooting
-Error: Unable to parse inventory file: Verify the inventory file path and format.
-Error: Connection refused: Ensure that the VMs are up and accessible.
+
+
+# YOLO E-commerce Kubernetes Orchestration
+# Minikube Setup Guide
+
+This guide provides step-by-step instructions to install and start Minikube on different operating systems: Linux, macOS, and Windows.
+
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+  - [Linux](#linux)
+  - [macOS](#macos)
+  - [Windows](#windows)
+- [Post-Installation Steps](#post-installation-steps)
+  - [Verify Installation](#verify-installation)
+  - [Access Kubernetes Dashboard](#access-kubernetes-dashboard)
+  - [Stopping and Deleting Minikube](#stopping-and-deleting-minikube)
+- [Troubleshooting](#troubleshooting)
+- [Resources](#resources)
+
+## Prerequisites
+- A compatible hypervisor or container runtime (e.g., Docker).
+- Administrative privileges on your machine.
+- Internet connection to download Minikube and its dependencies.
+
+## Installation
+
+### Linux
+
+1. **Install Dependencies**:
+
+   ```bash
+   `sudo apt-get update`
+   sudo apt-get install -y curl apt-transport-https
+   ```
+
+2. **Install Minikube:**
+
+```bash
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+```
+3. **Start Minikube:**
+
+```bash
+minikube start --driver=docker
+```
+4. **Verify Installation**
+Check if Minikube is running correctly:
+
+```bash
+minikube status
+```
+
+5. **Access Kubernetes Dashboard**
+To access the Kubernetes dashboard, use:
+```bash
+minikube dashboard
+```
+
+6. **Stopping and Deleting Minikube**
+Stop Minikube:
+
+```bash
+minikube stop
+```
+
+7. **Delete the Minikube cluster:**
+
+```bash
+minikube delete
+```
+
+8. **Troubleshooting**
+If you encounter issues, consider the following:
+
+-Ensure Docker or another hypervisor is running and configured correctly.
+-Verify your system meets the Minikube requirements.
+-Consult the Minikube troubleshooting guide.
+
+##  INSTALL kubectl
+
+Update apt package index, then install kubectl:
+
+``` bash
+sudo apt-get update`
+sudo apt-get install -y kubectl
+```
