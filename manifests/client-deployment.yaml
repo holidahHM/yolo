@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: client
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: client
@@ -43,3 +43,16 @@ spec:
   resources:
     requests:
       storage: 1Gi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service
+spec:
+  selector:
+    app: client
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: LoadBalancer  # or NodePort if you prefer
