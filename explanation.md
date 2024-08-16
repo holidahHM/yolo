@@ -219,7 +219,7 @@ To achieve the task the following git workflow was used:
 `git push `
 
 
-## 6. Summary
+# . Summary
 Your setup uses an Ansible inventory file to define the connection details for multiple hosts and a playbook to deploy and configure a YOLO e-commerce app. 
 
 The playbook will run on all hosts specified in the inventory, applying roles to deploy the frontend and backend components and set up MongoDB.
@@ -241,4 +241,110 @@ ansible-playbook playbook.yml
 This setup should provision your Vagrant VMs, clone the necessary repositories, and run the YOLO e-commerce application so it can be verified in the browser.
 
 If you need to adjust or troubleshoot this setup, ensure that the inventory file correctly reflects the hosts' details and that the playbook roles are correctly implemented.
+
+####
+
+## KUBERNERTES ORCHESTRAION
+
+## Step I: INSTALL Minikube
+
+## 1. Installation on Linux
+**a. Install Dependencies**
+Update the package index:
+
+```bash
+sudo apt-get update
+```
+
+Install required dependencies:
+
+```bash
+sudo apt-get install -y curl apt-transport-https
+```
+
+**b. Install Minikube**
+Download and install Minikube:
+``` bash
+`curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64`
+`sudo install minikube-linux-amd64 /usr/local/bin/minikube`
+```
+
+**c. Start Minikube**
+Start Minikube with a driver of your choice (e.g., docker):
+```bash
+minikube start --driver=docker
+```
+
+2. Installation on macOS
+**a. Install Dependencies**
+Ensure Homebrew is installed, then update Homebrew:
+```bash
+brew update
+```
+
+**b. Install Minikube**
+Install Minikube using Homebrew:
+
+```bash
+brew install minikube
+```
+
+**c. Start Minikube**
+Start Minikube:
+```bash
+minikube start --driver=docker
+```
+
+3. Installation on Windows
+**a. Install Dependencies**
+Download and install Chocolatey if not already installed.
+
+**b. Install Minikube**
+Use Chocolatey to install Minikube:
+```bash
+choco install minikube
+```
+
+**c. Start Minikube**
+Open Command Prompt or PowerShell as an Administrator and start Minikube:
+`choco install minikube`
+`minikube start --driver=docker`
+
+4. Common Post-Installation Steps
+**a. Verify Installation**
+Check the Minikube status to ensure it's running:
+
+``` bash
+minikube status
+```
+
+**b. Access Kubernetes Dashboard**
+To access the Kubernetes dashboard, run:
+```bash
+minikube dashboard
+```
+
+**c. Stopping and Deleting Minikube**
+Stop Minikube:
+
+``` bash
+minikube stop
+```
+
+Delete the Minikube cluster:
+
+```bash
+minikube delete
+```
+
+These steps should help you get started with Minikube on your preferred operating system.
+
+## STEP 2 : INSTALL kubectl
+
+Update apt package index, then install kubectl:
+
+``` bash
+sudo apt-get update`
+sudo apt-get install -y kubectl
+```
 
