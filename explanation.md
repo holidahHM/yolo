@@ -349,6 +349,65 @@ sudo apt-get install -y kubectl
 ```
 
 
+# KUBERNETES  DEPLOYMENT
+
+To convert your Docker Compose YAML file to a Kubernetes deployment, you'll need to create separate YAML files for each Kubernetes object such as Deployments, Services, and PersistentVolumeClaims.
+
+## Deploying
+To deploy these, save each configuration to a file, then apply them in the following order:
+
+```bash
+kubectl apply -f network.yaml
+kubectl apply -f mongo-deployment.yaml
+kubectl apply -f backend-deployment.yaml
+kubectl apply -f client-deployment.yaml
+```
+
+**StatefulSets**
+
+In Kubernetes, StatefulSets are used for applications that require persistent storage and stable network identities, which makes them ideal for certain types of applications. 
+
+
+ 1. Stateful Applications: Applications that maintain state across restarts and need persistent storage, such as databases and messaging systems.
+
+ 2. Stable Network Identity: When you need each pod to have a stable, unique network identity that persists across rescheduling.
+
+3. Ordered Deployment and Scaling: When you require ordered deployment and scaling (e.g., databases that need to start in a specific order).
+
+4. Persistent Storage: When you need persistent storage that must be retained across pod restarts or rescheduling.
+
+For your MongoDB deployment, this is  a stateful application since it requires persistent storage and stable identitiesy, you would typically use a StatefulSet instead of a Deployment 
+
+**Explanation:**
+serviceName: The name of the headless service that governs the StatefulSet.
+
+volumeClaimTemplates: This defines a PersistentVolumeClaim template that is used to create a PersistentVolume for each pod in the StatefulSet. It ensures that each pod has its own persistent storage.
+
+StatefulSet vs. Deployment: StatefulSets ensure that each pod has a stable identity and persistent storage, which is crucial for stateful applications like databases.
+
+
+**Inspect Pods and Deployments:**
+
+Ensure that all your pods are running as expected:
+
+```bash
+kubectl get pods
+```
+
+
+This command will list all deployments in the current namespace, showing their names, replicas, and status.
+```bash
+kubectl get deployments
+```
+
+
+**Get Events**
+The kubectl get events command lists recent events in the cluster. These events provide information about what's happening in the cluster, including successful operations, warnings, and errors.
+
+```bash
+kubectl get events
+```
+
 
 ### Additional Notes
 
