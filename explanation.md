@@ -348,3 +348,7 @@ sudo apt-get update`
 sudo apt-get install -y kubectl
 ```
 
+### Additional Notes
+
+- **Kubernetes on Cloud**: For deploying Kubernetes in a production environment, consider using managed Kubernetes services like Amazon EKS, Google Kubernetes Engine (GKE), or Azure Kubernetes Service (AKS).
+- **WSL2 on Windows**: Using WSL2 on Windows provides a Linux-based development environment, which is beneficial for running Linux containers and Kubernetes locally.
