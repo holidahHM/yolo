@@ -1,21 +1,3 @@
-# ---
-# - name: Pull image from repository
-#   docker_image:
-#     name: holidahmwangi23/yoloproject:V1.0.3
-#     source: pull
-
-# - name: Create Node.js Frontend Container
-#   docker_container:
-#     name: vibrant_curie
-#     image: yolo-client:V1.0.3
-#     networks:
-#       - yolo_default
-#       - name: yolo_app
-#     ports:
-#       - "3000:3000"
-#     command: "npm start"
-#   become: yes
-
 ---
 - name: Install Docker
   apt:
@@ -25,7 +7,7 @@
 
 
 - name: Log in to Docker Hub
-  docker_login:
+  docker_loginu:
     username: "holidahmwangi23"
     password: "+e!3tyqN4&EcH4T"
 
@@ -47,4 +29,7 @@
     ports:
       - "3000:3000"
     command: "npm start"
-  become: yes
+    update_cache: yes
+    become: yes
+  
+
