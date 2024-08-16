@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: yolo-backend:V1.0.1
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO_URL
+          value: 'mongodb+srv://holliemwangi:H0llies@m@tmcluster.zbhbjtc.mongodb.ne/'
+        volumeMounts:
+        - name: backend-storage
+          mountPath: /path/in/elegant_dijkstra
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      volumes:
+      - name: backend-storage
+        persistentVolumeClaim:
+          claimName: backend-pvc

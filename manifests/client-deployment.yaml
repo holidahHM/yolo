@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: client
+        image: yolo-client:V1.0.3
+        ports:
+        - containerPort: 3000
+        command: ["npm", "start"]
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        volumeMounts:
+        - name: datavol
+          mountPath: /path/in/affectionate_taussig
+      volumes:
+      - name: datavol
+        persistentVolumeClaim:
+          claimName: datavol-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: datavol-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
