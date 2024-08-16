@@ -388,7 +388,8 @@ StatefulSet vs. Deployment: StatefulSets ensure that each pod has a stable ident
 
 **Inspect Pods and Deployments:**
 
-Ensure that all your pods are running as expected:
+Ensure that all your pods are running as expected: 
+For this project , you use LoadBalancer Service to expose pods  for both backend and client in your Kubernetes configuration:
 
 ```bash
 kubectl get pods
