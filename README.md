@@ -209,3 +209,74 @@ Update apt package index, then install kubectl:
 sudo apt-get update`
 sudo apt-get install -y kubectl
 ```
+
+Kubernetes Deployment
+Deploying
+To deploy your Kubernetes resources, save each configuration to a YAML file, then apply them in the following order:
+
+```bash
+kubectl apply -f network.yaml
+kubectl apply -f mongo-deployment.yaml
+kubectl apply -f backend-deployment.yaml
+kubectl apply -f client-deployment.yaml
+```
+
+## StatefulSets##
+In Kubernetes, StatefulSets are used for applications that require persistent storage and stable network identities, such as databases.
+
+**Key Concepts:**
+Stateful Applications: Applications that maintain state across restarts and need persistent storage.
+
+Stable Network Identity: Ensures each pod has a stable, unique network identity.
+
+Ordered Deployment and Scaling: Useful for databases that need to start in a specific order.
+
+Persistent Storage: Retains storage across pod restarts or rescheduling.
+
+For your MongoDB deployment, which is a stateful application, you should use a StatefulSet instead of a Deployment.
+
+## Inspect Pods and Deployments##
+To ensure that all your pods are running as expected, run:
+
+```bash
+kubectl get pods
+```
+To list all deployments in the current namespace:
+
+```bash
+kubectl get deployments
+```
+
+## Verify Deployments##
+Check the status of your deployments, pods, and services to ensure everything is running correctly:
+
+```bash
+kubectl get deployments
+kubectl get pods
+kubectl get services
+```
+
+
+## Accessing Your Project##
+Expose Your Service Using a LoadBalancer
+If you have configured your services as LoadBalancer types, Kubernetes will provision an external IP address for you to access your services.
+
+Check the External IP:
+
+```bash
+kubectl get svc 
+```
+
+Look for the EXTERNAL-IP column under your client-service or any other service you want to access. It may take a few minutes for the IP address to be assigned.
+
+Access the Service
+Once you have the EXTERNAL-IP, you can access your application by navigating to the IP address in your web browser:
+
+plaintext
+
+http://<EXTERNAL-IP>
+
+**Additional Notes**
+Kubernetes on Cloud: For production environments, consider using managed Kubernetes services like Amazon EKS, Google Kubernetes Engine (GKE), or Azure Kubernetes Service (AKS).
+
+WSL2 on Windows: Using WSL2 on Windows provides a Linux-based development environment, which is beneficial for running Linux containers and Kubernetes locally.
